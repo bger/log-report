@@ -36,8 +36,17 @@ RSpec.describe LogParser do
   context 'for incorrect path' do
     let(:file_path) { File.expand_path('spec/fixtures/invalid_name.log') }
 
+    before { $stdout = StringIO.new }
+
+    after { $stdout = STDOUT }
+
+    before { allow(parser).to receive(:exit) }
+
     it 'shows a warning' do
-      expect { parser.data }.to output("File #{file_path} not found").to_stdout
+      parser.data
+      $stdout.rewind
+
+      expect($stdout.read.chomp).to eq("File #{file_path} not found")
     end
   end
 end
