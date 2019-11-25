@@ -9,16 +9,22 @@ RSpec.describe Printer do
   )}
 
   describe '#display' do
+    before { $stdout = StringIO.new }
+
+    after { $stdout = STDOUT }
+
     it 'prints pages ordered by total views' do
-      expect { printer.display }.to output(<<~MESSAGE
-        /contact 10 visits
-        /home 8 visits
-        MESSAGE
-      ).to_stdout
+      printer.display
+      $stdout.rewind
+
+      expect($stdout.read.chomp).to include("/contact 10 visits\n/home 8 visits")
     end
 
     it 'prints pages ordered by unique view' do
-      skip
+      printer.display
+      $stdout.rewind
+
+      expect($stdout.read.chomp).to include("/contact 8 unique views\n/home 5 unique views")
     end
   end
 end

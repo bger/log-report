@@ -6,9 +6,18 @@ class Printer
   end
 
   def display
-    render = report.pages_by_total_views.map do |page, ip|
+    puts format_pages_total_views.concat(format_pages_unique_views)
+  end
+
+  def format_pages_total_views
+    report.pages_by_total_views.map do |page, ip|
       "#{page} #{ip} visits"
     end
-    puts render
+  end
+
+  def format_pages_unique_views
+    report.pages_by_unique_views.map do |page, ip|
+      "#{page} #{ip} unique views"
+    end
   end
 end
