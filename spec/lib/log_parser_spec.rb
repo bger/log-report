@@ -25,6 +25,10 @@ RSpec.describe LogParser do
                                            ['/help_page/1', '722.247.931.582']
                                          ])
     end
+
+    it 'returns list of log entries' do
+      skip
+    end
   end
 
   context 'for incorrect path' do
