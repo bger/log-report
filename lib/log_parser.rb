@@ -1,6 +1,5 @@
 require 'csv'
-require 'log_entry'
-require 'pry'
+require_relative 'log_entry'
 
 class LogParser
   attr_reader :file_path
@@ -21,6 +20,6 @@ class LogParser
   private
 
   def full_path
-    @full_path ||= File.expand_path(file_path, __FILE__)
+    @full_path ||= File.expand_path(file_path)
   end
 end

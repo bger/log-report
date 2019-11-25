@@ -1,5 +1,3 @@
-require 'pry'
-
 class PagesReport
   attr_reader :data_source
 
