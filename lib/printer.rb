@@ -1,12 +1,13 @@
 class Printer
-  attr_reader :report
+  attr_reader :report, :stdout
 
-  def initialize(report:)
+  def initialize(report:, stdout: $stdout)
     @report = report
+    @stdout = stdout
   end
 
   def display
-    puts format_pages_total_views.concat(format_pages_unique_views)
+    stdout.puts(format_pages_total_views.concat(format_pages_unique_views))
   end
 
   def format_pages_total_views
