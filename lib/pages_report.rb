@@ -17,5 +17,15 @@ class PagesReport
       .reverse
   end
 
+  def pages_by_unique_views
+    data_source
+      .data
+      .group_by(&:page)
+      .transform_values {|log_entries| log_entries.map(&:ip).uniq.count}
+      .to_a
+      .sort_by {|_page, ip| ip}
+      .reverse
+  end
+
   private
 end

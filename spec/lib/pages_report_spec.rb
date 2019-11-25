@@ -28,4 +28,20 @@ RSpec.describe PagesReport do
       end
     end
   end
+
+  describe '#pages_by_unique_views' do
+    it 'groups data by pages' do
+      expect(report.pages_by_unique_views.map(&:first)).to match_array(['/contact', '/help_page/1', '/home'])
+    end
+
+    context 'collection' do
+      it 'is sorted by unique views' do
+        expect(report.pages_by_unique_views).to eq([
+          ['/contact', 2],
+          ['/help_page/1', 1],
+          ['/home', 1]
+        ])
+      end
+    end
+  end
 end
