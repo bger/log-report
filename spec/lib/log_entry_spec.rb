@@ -6,5 +6,5 @@ RSpec.describe LogEntry do
 
   let(:row_line) { ['/help_page/1', '184.123.665.067'] }
 
-  it { is_expected.to have_attributes(url: '/help_page/1', ip: '184.123.665.067') }
+  it { is_expected.to have_attributes(page: '/help_page/1', ip: '184.123.665.067') }
 end

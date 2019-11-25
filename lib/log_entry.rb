@@ -1,7 +1,7 @@
 class LogEntry
-  attr_reader :url, :ip
+  attr_reader :page, :ip
 
   def initialize(line)
-    @url, @ip = line
+    @page, @ip = line
   end
 end

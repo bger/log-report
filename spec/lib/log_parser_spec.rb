@@ -12,7 +12,7 @@ RSpec.describe LogParser do
     end
 
     it 'returns parsed collection' do
-      actual_result = parser.data.map {|entry| [entry.url, entry.ip]}
+      actual_result = parser.data.map {|entry| [entry.page, entry.ip]}
 
       expect(actual_result).to match_array([
                                            ['/contact', '184.123.665.067'],
