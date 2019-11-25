@@ -4,9 +4,9 @@ require 'log_parser'
 RSpec.describe LogParser do
   subject(:parser) { described_class.new(file_path: file_path) }
 
-  let(:file_path) { File.expand_path('spec/fixtures/webserver.log') }
-
   context 'for correct path' do
+    let(:file_path) { File.expand_path('spec/fixtures/webserver.log') }
+
     it 'returns all rows' do
       expect(parser.data.count).to eq(10)
     end
@@ -34,8 +34,10 @@ RSpec.describe LogParser do
   end
 
   context 'for incorrect path' do
+    let(:file_path) { File.expand_path('spec/fixtures/invalid_name.log') }
+
     it 'shows a warning' do
-      skip
+      expect { parser.data }.to output("File #{file_path} not found").to_stdout
     end
   end
 end
