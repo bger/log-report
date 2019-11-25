@@ -15,13 +15,16 @@ RSpec.describe PagesReport do
 
   describe '#pages_by_total_views' do
     it 'groups data by pages' do
-      # binding.pry
-      expect(report.pages_by_total_views.keys).to match_array(['/contact', '/help_page/1', '/home'])
+      expect(report.pages_by_total_views.map(&:first)).to match_array(['/contact', '/help_page/1', '/home'])
     end
 
     context 'collection' do
       it 'is sorted by total views' do
-        skip
+        expect(report.pages_by_total_views).to eq([
+          ['/help_page/1', 3],
+          ['/contact', 2],
+          ['/home', 1]
+        ])
       end
     end
   end

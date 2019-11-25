@@ -8,7 +8,13 @@ class PagesReport
   end
 
   def pages_by_total_views
-    data_source.data.group_by(&:page).transform_values{|log_entries| log_entries.map(&:ip).count}
+    data_source
+      .data
+      .group_by(&:page)
+      .transform_values{|log_entries| log_entries.map(&:ip).count}
+      .to_a
+      .sort_by {|_page, ip| ip}
+      .reverse
   end
 
   private
