@@ -12,7 +12,9 @@ RSpec.describe LogParser do
     end
 
     it 'returns parsed collection' do
-      expect(parser.data).to match_array([
+      actual_result = parser.data.map {|entry| [entry.url, entry.ip]}
+
+      expect(actual_result).to match_array([
                                            ['/contact', '184.123.665.067'],
                                            ['/contact', '444.701.448.104'],
                                            ['/contact', '929.398.951.889'],
@@ -27,7 +29,7 @@ RSpec.describe LogParser do
     end
 
     it 'returns list of log entries' do
-      skip
+      expect(parser.data).to all(be_kind_of(LogEntry))
     end
   end
 

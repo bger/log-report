@@ -8,7 +8,9 @@ class LogParser
   end
 
   def data
-    CSV.foreach(full_path, col_sep: ' ')
+    CSV.foreach(full_path, col_sep: ' ').map do |line|
+      LogEntry.new(line)
+    end
   end
 
   private
