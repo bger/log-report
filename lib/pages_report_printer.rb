@@ -1,4 +1,6 @@
-class Printer
+# Prints pages reports
+#
+class PagesReportPrinter
   attr_reader :report, :stdout
 
   def initialize(report:, stdout: $stdout)

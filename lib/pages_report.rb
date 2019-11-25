@@ -1,6 +1,11 @@
+# Responsible for any kind of reports grouped by pages
+#
 class PagesReport
   attr_reader :data_source
 
+  # @param [ISourcable] any object that responds to .data interface
+  #   and return list of <LogEntry>
+  #
   def initialize(data_source:)
     @data_source = data_source
   end

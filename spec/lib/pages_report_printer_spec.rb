@@ -1,6 +1,6 @@
-require 'printer'
+require 'pages_report_printer'
 
-RSpec.describe Printer do
+RSpec.describe PagesReportPrinter do
   subject(:printer) { described_class.new(report: report, stdout: stdout) }
 
   let(:report) { instance_double('PagesReport',
