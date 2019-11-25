@@ -8,24 +8,25 @@ class PagesReport
   end
 
   def pages_by_total_views
-    data_source
-      .data
-      .group_by(&:page)
-      .transform_values{|log_entries| log_entries.map(&:ip).count}
-      .to_a
-      .sort_by {|_page, ip| ip}
-      .reverse
+    group(log_entries)
   end
 
   def pages_by_unique_views
-    data_source
-      .data
+    group(log_entries.uniq{|log_entry| [log_entry.page, log_entry.ip]})
+  end
+
+  private
+
+  def group(collection)
+    collection
       .group_by(&:page)
-      .transform_values {|log_entries| log_entries.map(&:ip).uniq.count}
+      .transform_values {|log_entries| log_entries.map(&:ip).count}
       .to_a
       .sort_by {|_page, ip| ip}
       .reverse
   end
 
-  private
+  def log_entries
+    data_source.data
+  end
 end
