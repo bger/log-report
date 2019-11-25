@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Prints pages reports
 #
 class PagesReportPrinter

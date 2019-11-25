@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Responsible for any kind of reports grouped by pages
 #
 class PagesReport
@@ -15,7 +17,7 @@ class PagesReport
   end
 
   def pages_by_unique_views
-    group(log_entries.uniq{|log_entry| [log_entry.page, log_entry.ip]})
+    group(log_entries.uniq { |log_entry| [log_entry.page, log_entry.ip] })
   end
 
   private
@@ -23,9 +25,9 @@ class PagesReport
   def group(collection)
     collection
       .group_by(&:page)
-      .transform_values {|log_entries| log_entries.map(&:ip).count}
+      .transform_values { |log_entries| log_entries.map(&:ip).count }
       .to_a
-      .sort_by {|_page, ip| ip}
+      .sort_by { |_page, ip| ip }
       .reverse
   end
 

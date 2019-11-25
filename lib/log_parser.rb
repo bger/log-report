@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 require_relative 'log_entry'
 
@@ -20,7 +22,7 @@ class LogParser
     CSV.foreach(full_path, col_sep: ' ').map do |line|
       LogEntry.new(line)
     end
-  rescue Errno::ENOENT => e
+  rescue Errno::ENOENT
     puts "File #{file_path} not found"
     exit(1)
   end

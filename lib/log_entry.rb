@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Represents line of .log file
 #
 class LogEntry
